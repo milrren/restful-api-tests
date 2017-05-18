@@ -4,10 +4,12 @@ var app = express();
 
 
 app.get('/', function (req, res) {
+  console.log('GET request to the homepage');
   res.send('GET request to the homepage')
 })
 
 app.post('/', function (req, res) {
+  console.log('POST request to the homepage');
   res.send('POST request to the homepage')
 })
 
