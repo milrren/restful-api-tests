@@ -1,48 +1,14 @@
-var express = require('express');
-var request = require('request');
-var app = express();
+const express = require('express');
+const request = require('request');
 
+const whatever = require('./lib/whatever');
 
-app.get('/', function (req, res) {
-  console.log('GET request to the homepage');
-  res.send('GET request to the homepage')
-})
+const app = express();
+const router = express.Router();
 
-app.post('/', function (req, res) {
-  console.log('POST request to the homepage');
-  res.send('POST request to the homepage')
-})
-
-app.post('/nock', function (req, res) {
-  request({
-    url: 'http://www.example.com/',
-    method: 'GET'
-  }, function (error, response, body) {
-    if (response.statusCode === 200) {
-      res.send('This is happening');
-    } else if (response.statusCode === 404) {
-      res.send('This is not happening');
-    } else {
-      res.send('You should give up');
-    }
-  });
-})
-
-app.post('/async', function (req, res) {
-  setTimeout(function () {
-    request({
-      url: 'http://www.example.com/',
-      method: 'POST',
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ check: true })
-    });
-  }, 1000);
-  res.send('Well, this response come too fast');
-})
-
-app.listen(3000, function () {
+router.use('/whatever', whatever);
+app.use('/', router);
+app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
 })
 
