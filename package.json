@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
+    "body-parser": "^1.18.3",
     "chance": "^1.0.18",
     "express": "^4.15.2",
     "request": "^2.81.0"
